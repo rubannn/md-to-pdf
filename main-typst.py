@@ -88,7 +88,7 @@ def md_to_typst(md_text: str) -> str:
         if line.startswith("# "):
             out.append(f"= {line[2:].strip()}")
         elif line.startswith("## "):
-            out.append(f"== {line[3:].strip()}")
+            out.append(f"== {line[3:].strip().capitalize()}")
         elif line.startswith("### "):
             out.append(f"=== {line[4:].strip()}")
         elif line.startswith("- "):
