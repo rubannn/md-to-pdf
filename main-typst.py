@@ -144,9 +144,8 @@ print("word count:", word_count)
 typst_body = md_to_typst(md_text)
 
 typst_doc = f"""
-#set page(margin: 2cm)
-#set text(font: "Times New Roman", size: 11pt)
-#set par(justify: true, first-line-indent: (amount: 1.5em, all: true))
+#import "../style/style.typ": apply-style
+#show: apply-style
 
 {typst_body}
 """.strip()
@@ -157,5 +156,7 @@ typ_path.write_text(typst_doc, encoding="utf-8")
 # -----------------------------
 # Typst → PDF
 # -----------------------------
-subprocess.run([TYPST, "compile", str(typ_path), str(pdf_path)], check=True)
+subprocess.run(
+    [TYPST, "compile", "--root", ".", str(typ_path), str(pdf_path)], check=True
+)
 print("PDF created:", pdf_path)

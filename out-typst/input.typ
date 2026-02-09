@@ -1,6 +1,5 @@
-#set page(margin: 2cm)
-#set text(font: "Times New Roman", size: 11pt)
-#set par(justify: true, first-line-indent: (amount: 1.5em, all: true))
+#import "../style/style.typ": apply-style
+#show: apply-style
 
 = Рев’ю на статтю: *«Інформаційна система ведення реєстру клієнтів банку»*
 
