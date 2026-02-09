@@ -107,6 +107,7 @@ def md_to_typst(md_text: str) -> str:
 
 MAX_LEN = int(os.getenv("MAX_LEN", 20))
 PREFIX = os.getenv("PREFIX", "Noname. ")
+AUTHOR = os.getenv("AUTHOR", "Unknown Author")
 
 INPUT_MD = Path("./in/input.md")
 OUT_DIR = Path("./out")
@@ -146,6 +147,14 @@ typst_body = md_to_typst(md_text)
 typst_doc = f"""
 #import "../style/style.typ": apply-style
 #show: apply-style
+
+#set document(
+  title: "{clean_title}",
+  author: "{AUTHOR}",
+  description: "{clean_title}",
+  keywords: ("typst", "pdf", "review"),
+)
+
 
 {typst_body}
 """.strip()

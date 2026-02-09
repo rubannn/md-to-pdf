@@ -1,6 +1,14 @@
 #import "../style/style.typ": apply-style
 #show: apply-style
 
+#set document(
+  title: "Рев’ю: Інформаційна система ведення реєстру клієнтів банку",
+  author: "Mykola Ruban",
+  description: "Рев’ю: Інформаційна система ведення реєстру клієнтів банку",
+  keywords: ("typst", "pdf", "review"),
+)
+
+
 = Рев’ю на статтю: *«Інформаційна система ведення реєстру клієнтів банку»*
 
 == ВСТУП
