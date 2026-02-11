@@ -1,6 +1,6 @@
 /out
 .env
-test.typ
+test.*
 
 
 # Byte-compiled / optimized / DLL files
