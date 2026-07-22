@@ -2,35 +2,35 @@
 #show: apply-style
 
 #set document(
-  title: "Рев’ю: Analysis of ORM framework approaches for Node.js",
+  title: "Review: Machine Learning Operations MLOps : Challenges and Strategies",
   author: "Mykola Ruban",
-  description: "Рев’ю: Analysis of ORM framework approaches for Node.js",
-  keywords: ("typst", "pdf", "review"),
+  description: "Review: Machine Learning Operations MLOps : Challenges and Strategies",
+  keywords: ("typst", "pdf", "review", "mlops", "challenges", "strategies", "article", "technical"),
 )
 
 
-= Рев’ю на статтю: «Analysis of ORM framework approaches for Node.js»
+= Review: Machine Learning Operations (MLOps): Challenges and Strategies
 
-== Вступ
+== Introduction
 
-Стаття «Analysis of ORM framework approaches for Node.js», автор — Сергій Жадко-Базилевич (Харківський національний університет радіоелектроніки), опублікована у Journal of Computer Sciences Institute (том 37, 2025). Дослідження присвячене порівнянню продуктивності трьох ORM-фреймворків для Node.js — Sequelize, Prisma та TypeORM. Мета роботи — експериментально порівняти ці інструменти у різних режимах взаємодії з базою даних: кешовані й некешовані запити та паралельне навантаження, — щоб дати розробникам практичні орієнтири при виборі ORM.
+The article «Machine Learning Operations (MLOps): Challenges and Strategies», authored by Amandeep Singla and published in the International Journal of Advanced Computer Science and Applications (Vol. 15, No. 1, 2023), addresses the growing importance of MLOps as a discipline streamlining the end-to-end ML lifecycle — development, deployment, monitoring, and maintenance. The central research question concerns why organizations struggle to operationalize ML models at scale and what strategies can mitigate the technical, organizational, and cultural obstacles involved. The paper's goal is to categorize the main challenges of MLOps adoption and propose strategies for achieving efficiency, scalability, and reliability in ML workflows.
 
-== Методологія
+== Methodology
 
-Для дослідження розроблено бекенд інтернет-магазину на NestJS і PostgreSQL із дев'ятьма ендпоінтами — від простих CRUD-операцій до вкладених вибірок, транзакцій та обробки ієрархічних даних. Кожен ендпоінт реалізовано на всіх трьох фреймворках. Тестування проводилося у трьох режимах: одиночні кешовані запити, одиночні некешовані (з очищенням кешу PostgreSQL) та паралельне виконання 50 запитів одночасно, по 1000 запитів на сценарій. Продуктивність оцінювали через логування «сирих» SQL-запитів і команду `EXPLAIN (ANALYZE)`. Базу наповнили понад 5 мільйонами записів, середовище розгорнули у двох Docker-контейнерах.
+The paper is a conceptual review rather than an empirical study. Instead of surveys, experiments, or statistical analysis, the author synthesizes existing knowledge and industry practice into a taxonomy of challenges, grouped into three categories — technical, organizational, and cultural — each discussed narratively and grounded in established DevOps principles. No dataset, sample size, or quantitative metric is reported, placing the work closer to a position paper than a data-driven research article.
 
-== Результати
+== Results
 
-Жоден фреймворк не виявився однозначним лідером у всіх сценаріях. Prisma демонструє найкращу масштабованість під паралельним навантаженням завдяки ефективному пулу з'єднань, але помітно програє в некешованих одиночних запитах — подекуди втричі повільніша за Sequelize. Sequelize, навпаки, найшвидший у простих одиночних операціях, проте суттєво втрачає продуктивність під навантаженням. TypeORM показав найбільш збалансовану поведінку без критичних провалів у жодному режимі й підтримує складніші структури даних (Closure Table, Nested Set, Materialized Path), хоча програє у вкладених вибірках через менш оптимальну генерацію запитів.
+The key findings center on three challenge domains. Technical challenges include model versioning, reproducibility, and consistent performance across heterogeneous environments. Organizational challenges involve coordinating cross-functional teams, managing fragmented toolchains, and integrating ML pipelines into existing development processes. Cultural challenges include resistance to change, skill gaps, and lack of shared vocabulary between data scientists and engineers. The author proposes strategies such as version control and containerization, dedicated MLOps teams, integrating MLOps into DevOps, automated CI/CD pipelines, and continuous education programs.
 
-== Ключові інсайти
+== Key insights
 
-*Вибір ORM залежить від профілю навантаження, а не від «універсально кращого» рішення.* Продуктивність фреймворку критично залежить від типу сценарію — паралельні чи одиночні запити, кешовані чи ні. Для систем із високою конкурентністю (масове створення замовлень, публічні API) доцільніше обирати Prisma, тоді як для сервісів із переважно послідовним доступом — Sequelize.
+*_Reproducibility as an infrastructure problem, not a discipline problem._* The article frames reproducibility failures as arising from inconsistent environments and weak version control rather than a lack of rigor among practitioners. This reframes reproducibility as solvable through tooling — containerization, dataset versioning, model registries — directly transferable to any pipeline mixing structured data processing with ML components.
 
-*Спосіб генерації SQL впливає на продуктивність не менше, ніж сама база даних.* Приклад ендпоінта «Read order data» показує, що різні стратегії формування запиту (JOIN у Sequelize, дві послідовні вибірки у Prisma, підзапит у TypeORM) дають суттєво різний час виконання при однаковій структурі даних. Це нагадування про необхідність перевіряти згенерований SQL, а не покладатися виключно на абстракцію ORM.
+*_MLOps as an extension of DevOps rather than a separate discipline._* The recommendation to embed MLOps within existing DevOps practices suggests that CI/CD principles familiar from traditional software engineering apply almost directly to ML systems, reducing the learning curve for teams moving between these domains.
 
-*Транзакційні операції потребують окремого аналізу продуктивності.* Результати ендпоінта «Confirm order» показують, що поведінка фреймворків у транзакціях (різке уповільнення Prisma під паралельним навантаженням) відрізняється від типової поведінки в одиночних запитах. Це варто враховувати при проєктуванні критичних бізнес-операцій, де транзакційна цілісність поєднується з високим навантаженням.
+*_Cultural friction as a leading cause of failed adoption._* By naming resistance to change and terminology gaps as obstacles, the article highlights that technical solutions alone are insufficient — cross-functional communication and shared documentation are equally critical for a pipeline to be trusted long-term.
 
-== Висновок
+== Conclusion
 
-Стаття робить корисний внесок у практичне розуміння продуктивності ORM-фреймворків для Node.js, поєднуючи детальне бенчмаркування з реалістичним сценарієм застосування. Головна цінність роботи — не в проголошенні «найкращого» ORM, а в демонстрації того, що вибір інструменту має ґрунтуватися на профілі навантаження застосунку. Перспективними напрямами майбутніх досліджень можуть стати порівняння з іншими СУБД, аналіз впливу кешування на рівні застосунку та дослідження поведінки ORM у мікросервісних архітектурах.
+Overall, the article offers a useful conceptual map of MLOps challenges and strategies, contributing to the field by consolidating scattered industry observations into a structured framework. Its main limitation is the absence of empirical validation — no case studies, interviews, or quantitative evidence support the proposed strategies. Future research could test the framework against real-world implementations, measuring the actual impact of the proposed measures on deployment reliability and adoption rates.

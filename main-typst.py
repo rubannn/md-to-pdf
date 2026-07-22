@@ -1,9 +1,40 @@
 import re
 import subprocess
+from collections import Counter
 from pathlib import Path
 import shutil
 import sys
 import os
+
+
+STOP_WORDS = {
+    # english
+    "the", "and", "that", "this", "with", "from", "for", "are", "was",
+    "were", "have", "has", "had", "not", "but", "its", "their", "them",
+    "which", "while", "into", "than", "then", "also", "such", "each",
+    "these", "those", "other", "more", "most", "some", "only", "over",
+    "when", "where", "what", "who", "how", "can", "could", "would",
+    "should", "will", "may", "might", "about", "between", "across",
+    "through", "within", "without", "under", "after", "before", "both",
+    "does", "did", "being", "been", "there", "here", "any", "all", "one",
+    # ukrainian / russian
+    "для", "que", "або", "цей", "яка", "яке", "які", "його", "її", "їх",
+    "цих", "цієї", "також", "лише", "тому", "щодо", "коли", "де", "як",
+    "що", "не", "на", "за", "із", "від", "до", "про", "при", "чи",
+    "статті", "стаття", "автор",
+}
+
+
+def extract_keywords(md_text: str, top_n: int = 5) -> list[str]:
+    """
+    Извлекает набор ключевых слов из текста на основе частоты встречаемости
+    значимых слов (без markdown-разметки и стоп-слов).
+    """
+    clean = re.sub(r"[#>*`~\[\]\(\)\-_]", " ", md_text)
+    words = re.findall(r"[a-zA-Zа-яА-ЯіїєґІЇЄҐ']+", clean.lower())
+    significant = (w for w in words if len(w) > 3 and w not in STOP_WORDS)
+    counts = Counter(significant)
+    return [word for word, _ in counts.most_common(top_n)]
 
 
 def find_typst() -> str:
@@ -54,6 +85,17 @@ def md_inline_to_typst(text: str) -> str:
     italic = False
 
     while i < len(text):
+        # Markdown жирный курсив ***
+        if text[i : i + 3] == "***":
+            if bold and italic:
+                result.append("_*")  # закрытие: сначала курсив, потом жирный
+            else:
+                result.append("*_")  # открытие: сначала жирный, потом курсив
+            bold = not bold
+            italic = not italic
+            i += 3
+            continue
+
         # Markdown жирный **
         if text[i : i + 2] == "**":
             result.append("*")  # Typst жирный
@@ -133,10 +175,13 @@ pdf_path = OUT_DIR / pdf_name
 
 
 # -----------------------------
-# Подсчёт слов
+# Подсчёт слов и ключевых слов
 # -----------------------------
 word_count = count_words(md_text)
 print("word count:", word_count)
+
+keywords = ("typst", "pdf", "review", *extract_keywords(md_text))
+print("keywords:", ", ".join(keywords))
 
 
 # -----------------------------
@@ -152,7 +197,7 @@ typst_doc = f"""
   title: "{clean_title}",
   author: "{AUTHOR}",
   description: "{clean_title}",
-  keywords: ("typst", "pdf", "review"),
+  keywords: ({", ".join(f'"{kw}"' for kw in keywords)}),
 )
 
 
