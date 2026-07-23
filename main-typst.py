@@ -6,22 +6,106 @@ import shutil
 import sys
 import os
 
-
 STOP_WORDS = {
     # english
-    "the", "and", "that", "this", "with", "from", "for", "are", "was",
-    "were", "have", "has", "had", "not", "but", "its", "their", "them",
-    "which", "while", "into", "than", "then", "also", "such", "each",
-    "these", "those", "other", "more", "most", "some", "only", "over",
-    "when", "where", "what", "who", "how", "can", "could", "would",
-    "should", "will", "may", "might", "about", "between", "across",
-    "through", "within", "without", "under", "after", "before", "both",
-    "does", "did", "being", "been", "there", "here", "any", "all", "one",
+    "the",
+    "and",
+    "that",
+    "this",
+    "with",
+    "from",
+    "for",
+    "are",
+    "was",
+    "were",
+    "have",
+    "has",
+    "had",
+    "not",
+    "but",
+    "its",
+    "their",
+    "them",
+    "which",
+    "while",
+    "into",
+    "than",
+    "then",
+    "also",
+    "such",
+    "each",
+    "these",
+    "those",
+    "other",
+    "more",
+    "most",
+    "some",
+    "only",
+    "over",
+    "when",
+    "where",
+    "what",
+    "who",
+    "how",
+    "can",
+    "could",
+    "would",
+    "should",
+    "will",
+    "may",
+    "might",
+    "about",
+    "between",
+    "across",
+    "through",
+    "within",
+    "without",
+    "under",
+    "after",
+    "before",
+    "both",
+    "does",
+    "did",
+    "being",
+    "been",
+    "there",
+    "here",
+    "any",
+    "all",
+    "one",
     # ukrainian / russian
-    "для", "que", "або", "цей", "яка", "яке", "які", "його", "її", "їх",
-    "цих", "цієї", "також", "лише", "тому", "щодо", "коли", "де", "як",
-    "що", "не", "на", "за", "із", "від", "до", "про", "при", "чи",
-    "статті", "стаття", "автор",
+    "для",
+    "que",
+    "або",
+    "цей",
+    "яка",
+    "яке",
+    "які",
+    "його",
+    "її",
+    "їх",
+    "цих",
+    "цієї",
+    "також",
+    "лише",
+    "тому",
+    "щодо",
+    "коли",
+    "де",
+    "як",
+    "що",
+    "не",
+    "на",
+    "за",
+    "із",
+    "від",
+    "до",
+    "про",
+    "при",
+    "чи",
+    "статті",
+    "стаття",
+    "автор",
 }
 
 
@@ -143,6 +227,29 @@ def md_to_typst(md_text: str) -> str:
     return "\n".join(out)
 
 
+def get_typst(md_to_typst, AUTHOR, md_text, clean_title, typ_path, keywords):
+    """
+    Оборачивает Markdown (через md_to_typst) в Typst-документ с метаданными
+    (title, author, description, keywords) и сохраняет его в typ_path.
+    """
+    typst_body = md_to_typst(md_text)
+
+    typst_doc = f"""
+        #import "../style/style.typ": apply-style
+        #show: apply-style
+        #set document(
+        title: "{clean_title}",
+        author: "{AUTHOR}",
+        description: "{clean_title}",
+        keywords: ({", ".join(f'"{kw}"' for kw in keywords)}),
+        )
+        {typst_body}
+        """.strip()
+
+    typ_path.write_text(typst_doc, encoding="utf-8")
+
+
+
 # -----------------------------
 # Константы
 # -----------------------------
@@ -173,7 +280,6 @@ pdf_name = safe_filename(base_name, MAX_LEN, ".pdf")
 typ_path = OUT_DIR_TYPST / "input.typ"
 pdf_path = OUT_DIR / pdf_name
 
-
 # -----------------------------
 # Подсчёт слов и ключевых слов
 # -----------------------------
@@ -187,24 +293,7 @@ print("keywords:", ", ".join(keywords))
 # -----------------------------
 # Markdown → Typst
 # -----------------------------
-typst_body = md_to_typst(md_text)
-
-typst_doc = f"""
-#import "../style/style.typ": apply-style
-#show: apply-style
-
-#set document(
-  title: "{clean_title}",
-  author: "{AUTHOR}",
-  description: "{clean_title}",
-  keywords: ({", ".join(f'"{kw}"' for kw in keywords)}),
-)
-
-
-{typst_body}
-""".strip()
-
-typ_path.write_text(typst_doc, encoding="utf-8")
+get_typst(md_to_typst, AUTHOR, md_text, clean_title, typ_path, keywords)
 
 
 # -----------------------------

@@ -1,36 +1,33 @@
 #import "../style/style.typ": apply-style
-#show: apply-style
+        #show: apply-style
+        #set document(
+        title: "Рев’ю: A Multivocal Review of MLOps Practices, Challenges and Open Issues",
+        author: "Mykola Ruban",
+        description: "Рев’ю: A Multivocal Review of MLOps Practices, Challenges and Open Issues",
+        keywords: ("typst", "pdf", "review", "mlops", "автори", "практики", "дослідження", "ролей"),
+        )
+        = Рев’ю на статтю: «A Multivocal Review of MLOps Practices, \ Challenges and Open Issues»
 
-#set document(
-  title: "Review: Machine Learning Operations MLOps : Challenges and Strategies",
-  author: "Mykola Ruban",
-  description: "Review: Machine Learning Operations MLOps : Challenges and Strategies",
-  keywords: ("typst", "pdf", "review", "mlops", "challenges", "strategies", "article", "technical"),
-)
+== Вступ
 
+Стаття «A Multivocal Review of MLOps Practices, Challenges and Open Issues», написана колективом авторів — Beyza Eken, Samodha Pallewatta, Nguyen Khoi Tran, Ayse Tosun та Muhammad Ali Babar, — присвячена систематизації знань про MLOps (Machine Learning Operations) як практики виведення ML-моделей у продакшн. Основна дослідницька проблема полягає в тому, що, попри стрімке поширення MLOps, у галузі відсутнє уніфіковане концептуальне розуміння цього поняття: різні джерела трактують MLOps то як «DevOps для ML», то як управління життєвим циклом експериментів, то як культурну трансформацію команд. Автори ставлять за мету побудувати єдину, засновану на доказах концептуалізацію MLOps, синтезуючи як академічну, так і галузеву (grey) літературу, а також окреслити найкращі практики, виклики впровадження та перспективні напрями досліджень.
 
-= Review: Machine Learning Operations (MLOps): Challenges and Strategies
+== Методологія
 
-== Introduction
+Дослідження виконане як Systematic Multivocal Literature Review (MLR) у поєднанні з тематичним аналізом за методологією Braun et al. Автори проаналізували 150 рецензованих наукових публікацій та 48 одиниць «сірої» літератури (блоги, білі книги виробників хмарних платформ, документація). Пошук здійснювався у базах IEEEXplore, ACM Digital Library, Web of Science, Scopus та через Google Search і Arxiv для сірої літератури, з подальшим застосуванням критеріїв включення/виключення, оцінки якості та методу «снігової кулі» (forward/backward snowballing). З цього випливає, що дослідження має гібридний, а не суто кількісний характер: статистичних тестів у класичному розумінні не застосовувалося, натомість дані оброблялися якісно — через кодування, групування кодів у теми та їх валідацію кількома дослідниками для підвищення міжекспертної узгодженості.
 
-The article «Machine Learning Operations (MLOps): Challenges and Strategies», authored by Amandeep Singla and published in the International Journal of Advanced Computer Science and Applications (Vol. 15, No. 1, 2023), addresses the growing importance of MLOps as a discipline streamlining the end-to-end ML lifecycle — development, deployment, monitoring, and maintenance. The central research question concerns why organizations struggle to operationalize ML models at scale and what strategies can mitigate the technical, organizational, and cultural obstacles involved. The paper's goal is to categorize the main challenges of MLOps adoption and propose strategies for achieving efficiency, scalability, and reliability in ML workflows.
+== Результати
 
-== Methodology
+Ключовим результатом є виокремлення восьми типів визначень MLOps (наприклад, «MLOps як безперервне ML», «DevOps для ML», «MLOps як культура»), що відображають різні акценти дослідників на проблемах продуктизації ML. Звідси видно, що термінологічна плутанина навколо MLOps не випадкова, а є наслідком справді різних предметних кутів зору на одну й ту саму проблему. Автори також побудували повний конвеєр MLOps-активностей — від бізнес-аналізу до моніторингу — з прив'язкою до ролей учасників (data engineer, ML engineer, MLOps engineer тощо). Окрему групу результатів становлять сім категорій практик (управління командою, прозорість і провенанс, безперервний моніторинг, інфраструктура, розгортання моделей, автоматизовані конвеєри, абстрагування складності MLOps), а також три групи викликів: соціотехнічні, пов'язані з конвеєрами та пов'язані з платформами. На практиці це означає, що організації, які впроваджують MLOps, стикаються не лише з технічними, а й з культурними бар'єрами, а рівень успішності залежить від масштабу компанії — великі корпорації адаптують MLOps ефективніше за малий бізнес.
 
-The paper is a conceptual review rather than an empirical study. Instead of surveys, experiments, or statistical analysis, the author synthesizes existing knowledge and industry practice into a taxonomy of challenges, grouped into three categories — technical, organizational, and cultural — each discussed narratively and grounded in established DevOps principles. No dataset, sample size, or quantitative metric is reported, placing the work closer to a position paper than a data-driven research article.
+== Ключові інсайти
 
-== Results
+*Розмежування ролей у MLOps-команді.* Стаття детально описує понад десять ролей — від domain expert до MLOps engineer та compliance team — із чіткими межами відповідальності. Це корисно для практичного застосування, оскільки дає змогу точніше формулювати технічні завдання та документацію під конкретну аудиторію команди, а не змішувати вимоги «для розробників узагалі». Для команд, які впроваджують ML-рішення, це означає можливість заздалегідь визначати точки передачі відповідальності між ролями, зменшуючи ризик конфліктів на межі дисциплін.
 
-The key findings center on three challenge domains. Technical challenges include model versioning, reproducibility, and consistent performance across heterogeneous environments. Organizational challenges involve coordinating cross-functional teams, managing fragmented toolchains, and integrating ML pipelines into existing development processes. Cultural challenges include resistance to change, skill gaps, and lack of shared vocabulary between data scientists and engineers. The author proposes strategies such as version control and containerization, dedicated MLOps teams, integrating MLOps into DevOps, automated CI/CD pipelines, and continuous education programs.
+*Практики забезпечення прозорості та provenance.* Автори виділяють версіонування артефактів, централізовані data/feature stores та відстеження lineage моделей як окрему категорію найкращих практик. Тут ключову роль відіграє ідея, що відстежуваність експериментів — не просто питання відтворюваності результатів, а інструмент відкату системи до останнього робочого стану. Простіше кажучи, це дозволяє розглядати versioning не як формальність, а як механізм стійкості системи до збоїв.
 
-== Key insights
+*Дилема автоматизації в MLOps.* Виявлений у розділі про виклики «automation decision dilemma» показує, що не всі етапи життєвого циклу варто автоматизувати — валідація моделі, аналіз справедливості чи перевірка регуляторної відповідності потребують участі людини. Якщо подивитися на це з іншого боку, надмірна автоматизація може створювати саме ті ризики, які MLOps покликаний усувати. Завдяки цьому вдається уникнути хибного припущення, що зрілість MLOps-практики вимірюється відсотком автоматизованих кроків.
 
-*_Reproducibility as an infrastructure problem, not a discipline problem._* The article frames reproducibility failures as arising from inconsistent environments and weak version control rather than a lack of rigor among practitioners. This reframes reproducibility as solvable through tooling — containerization, dataset versioning, model registries — directly transferable to any pipeline mixing structured data processing with ML components.
+== Висновок
 
-*_MLOps as an extension of DevOps rather than a separate discipline._* The recommendation to embed MLOps within existing DevOps practices suggests that CI/CD principles familiar from traditional software engineering apply almost directly to ML systems, reducing the learning curve for teams moving between these domains.
-
-*_Cultural friction as a leading cause of failed adoption._* By naming resistance to change and terminology gaps as obstacles, the article highlights that technical solutions alone are insufficient — cross-functional communication and shared documentation are equally critical for a pipeline to be trusted long-term.
-
-== Conclusion
-
-Overall, the article offers a useful conceptual map of MLOps challenges and strategies, contributing to the field by consolidating scattered industry observations into a structured framework. Its main limitation is the absence of empirical validation — no case studies, interviews, or quantitative evidence support the proposed strategies. Future research could test the framework against real-world implementations, measuring the actual impact of the proposed measures on deployment reliability and adoption rates.
+Стаття робить вагомий внесок у систематизацію знань про MLOps, пропонуючи уніфіковану концептуальну рамку на основі 198 джерел, що охоплюють як академічну, так і практичну перспективи. Не менш важливим є той факт, що дослідження не обмежується описом технологій, а формує цілісну картину ролей, практик і викликів у їхньому взаємозв'язку. Варто окремо зауважити: автори відкрито визнають обмеження свого дослідження, зокрема виключення платних матеріалів із пошуку сірої літератури. У цьому контексті показово, що напрями майбутніх досліджень, окреслені авторами — зокрема розробка доменно-специфічних фреймворків та стандартизація практик — залишаються відкритими й актуальними для подальшого вивчення адаптації MLOps до різних галузевих контекстів.
