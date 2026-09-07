@@ -109,7 +109,7 @@ STOP_WORDS = {
 }
 
 
-def extract_keywords(md_text: str, top_n: int = 5) -> list[str]:
+def extract_keywords(md_text: str, top_n: int = 10) -> list[str]:
     """
     Извлекает набор ключевых слов из текста на основе частоты встречаемости
     значимых слов (без markdown-разметки и стоп-слов).
