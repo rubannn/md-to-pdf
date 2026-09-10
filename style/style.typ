@@ -23,6 +23,26 @@
     ),
   )
 
+  // style for bash code blocks
+  show raw.where(lang: "bash"): set text(size: 8pt)
+
+  // style for tables
+  show table: set text(size: 8pt)
+
+  // style for blockquotes
+  show quote.where(block: true): it => {
+    block(
+      width: 100%,
+      above: 0.6em,
+      below: 0.6em,
+      inset: (left: 1em, top: 0.5em, bottom: 2mm),
+      stroke: (left: 2pt + gray),
+    )[
+      #set text(style: "italic", fill: rgb("#555555"), size: 8pt)
+      #it.body
+    ]
+  }
+
   // style for heading 1
   show heading.where(level: 1): it => {
     align(center)[#block(it.body)]

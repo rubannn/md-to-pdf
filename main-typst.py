@@ -200,16 +200,93 @@ def md_inline_to_typst(text: str) -> str:
     return "".join(result)
 
 
+def escape_typst_text(text: str) -> str:
+    """
+    Экранирует символы, которые в Typst имеют особое значение внутри content-блока [...].
+    """
+    text = text.replace("\\", "\\\\")
+    text = text.replace("#", "\\#")
+    text = text.replace("[", "\\[")
+    text = text.replace("]", "\\]")
+    return text
+
+
+def is_table_separator(line: str) -> bool:
+    """
+    Проверяет, является ли строка разделителем заголовка таблицы Markdown, напр. |---|:---:|---|
+    """
+    stripped = line.strip()
+    if "-" not in stripped:
+        return False
+    return bool(re.fullmatch(r"\|?[\s:\-|]+\|?", stripped))
+
+
+def parse_table_row(line: str) -> list[str]:
+    """
+    Разбивает строку таблицы Markdown на список ячеек.
+    """
+    stripped = line.strip().removeprefix("|").removesuffix("|")
+    return [cell.strip() for cell in stripped.split("|")]
+
+
 def md_to_typst(md_text: str) -> str:
     """
     Простейшее преобразование Markdown → Typst.
-    Поддерживает заголовки, списки и абзацы.
+    Поддерживает заголовки, списки, таблицы и абзацы.
     """
     lines = md_text.splitlines()
     out = []
+    i = 0
+    n = len(lines)
 
-    for line in lines:
-        line = md_inline_to_typst(line)
+    while i < n:
+        raw_line = lines[i]
+
+        # Таблица Markdown: строка с "|", за которой следует строка-разделитель
+        if (
+            raw_line.strip().startswith("|")
+            and i + 1 < n
+            and is_table_separator(lines[i + 1])
+        ):
+            header_cells = parse_table_row(raw_line)
+            col_count = len(header_cells)
+            i += 2
+
+            rows = []
+            while i < n and lines[i].strip().startswith("|"):
+                rows.append(parse_table_row(lines[i]))
+                i += 1
+
+            def cell_to_typst(cell: str) -> str:
+                return f"[{escape_typst_text(md_inline_to_typst(cell))}]"
+
+            out.append("#table(")
+            out.append(f"  columns: {col_count},")
+            out.append("  table.header(")
+            out.append("    " + ", ".join(cell_to_typst(c) for c in header_cells) + ",")
+            out.append("  ),")
+            for row in rows:
+                cells = list(row) + [""] * (col_count - len(row))
+                out.append("  " + ", ".join(cell_to_typst(c) for c in cells[:col_count]) + ",")
+            out.append(")")
+            out.append("")
+            continue
+
+        # Блочная цитата Markdown: одна или несколько последовательных строк "> ..."
+        if raw_line.strip().startswith(">"):
+            quote_parts = []
+            while i < n and lines[i].strip().startswith(">"):
+                content = lines[i].strip()[1:].strip()
+                if content:
+                    quote_parts.append(md_inline_to_typst(content))
+                i += 1
+
+            quote_text = escape_typst_text(" ".join(quote_parts))
+            out.append(f"#quote(block: true)[{quote_text}]")
+            out.append("")
+            continue
+
+        line = md_inline_to_typst(raw_line)
 
         if line.startswith("# "):
             out.append(f"= {line[2:].strip()}")
@@ -217,12 +294,16 @@ def md_to_typst(md_text: str) -> str:
             out.append(f"== {line[3:].strip().capitalize()}")
         elif line.startswith("### "):
             out.append(f"=== {line[4:].strip()}")
+        elif line.startswith("#### "):
+            out.append(f"==== {line[5:].strip()}")
         elif line.startswith("- "):
             out.append(f"- {line[2:].strip()}")
         elif line.strip() == "":
             out.append("")
         else:
             out.append(line)
+
+        i += 1
 
     return "\n".join(out)
 
