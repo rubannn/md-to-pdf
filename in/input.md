@@ -1,25 +1,31 @@
-# Article Review: «Agile methodologies: Adapting product management to rapidly changing market conditions»
+# Article Review: «Mastering User Stories: Cracking the Code of Effective User Story Creation in Agile»
 
 ## INTRODUCTION
 
-The article «Agile methodologies: Adapting product management to rapidly changing market conditions» by Prisca Amajuoyi, Lucky Bamidele Benjamin, and Kudirat Bukola Adeusi was published in GSC Advanced Research and Reviews in 2024. It examines how Agile helps product management respond to market volatility, changing customer expectations, and technological developments, synthesizing existing research, comparing Agile with traditional approaches, and identifying its benefits, limitations, and strategic implications.
+The chapter «Mastering User Stories: Cracking the Code of Effective User Story Creation in Agile» by Saurabh Bhattacharya and Babita Singla was published in 2024 in *Practical Approaches to Agile Project Management*. It examines principles and challenges of creating effective user stories in Agile software development. The main research questions focus on whether Agile practitioners use user stories effectively, which gaps exist in current practices, and which principles help teams create clearer requirements. The main objective is to identify approaches that improve communication between stakeholders and development teams while keeping requirements user-oriented and connected to business value.
 
 ## METHODOLOGY
 
-The study is a literature review rather than an original experiment. The authors synthesize scholarly publications, industry reports, case studies, and expert opinions, comparing Agile and traditional approaches across sectors. The search strategy uses keywords and Boolean operators, covering English-language publications from 2000 onward. Since no original sample or statistical analysis is reported, the findings should be read as a synthesis of existing evidence rather than new quantitative proof of Agile's effectiveness.
+The authors use a systematic literature review as the main research method. The final review includes 30 selected publications related to Agile practices, user stories, and requirements gathering. The search process relied on relevant keywords and inclusion and exclusion criteria. The study is based on secondary data rather than experiments or surveys conducted by the authors. No independent statistical analysis was used. Instead, findings were developed through qualitative comparison of previous research, user-story frameworks, and requirement-elicitation practices.
 
 ## RESULTS
 
-The review concludes that Scrum, Kanban, and other Agile practices can improve responsiveness to customer feedback, product innovation, customer satisfaction, and time-to-market, since iterative development allows teams to reassess priorities before market requirements become outdated. The authors also identify organizational resistance, transition complexity, resource allocation, and difficulties scaling Agile in large organizations as important limitations. The central finding is therefore conditional: Agile strengthens competitiveness only when implementation is supported by organizational commitment and appropriate management practices.
+The review shows that effective user stories require more than a standard role-goal-benefit template. Important principles include user-centricity, clarity, empathy, prioritization, simplicity, and strategic alignment. Frameworks such as INVEST and the 5-Card approach provide structure, while acceptance criteria make requirements measurable and testable. The reviewed literature also indicates that direct user involvement improves requirements capture and user satisfaction. At the same time, teams still face difficulties identifying implicit user needs.
 
 ## KEY INSIGHTS
 
-1. Continuous feedback should guide product priorities. Short development cycles and regular customer feedback help maintain product relevance, so teams should treat the roadmap as an adaptable plan rather than a fixed commitment. For ML solutions, this means validating model outputs and user needs before investing heavily in additional features, reducing the risk of building technically successful solutions that do not address current customer problems.
+### Acceptance criteria turn requirements into verifiable outcomes
 
-2. Agile requires organizational alignment, not only ceremonies. Adopting Agile involves changes in culture, collaboration, and management processes, because sprints or Kanban boards alone do not guarantee adaptability. Alignment enables clear responsibilities, better communication between product and technical specialists, and decisions based on shared priorities — particularly valuable in ML projects, where product managers, data scientists, and engineers must coordinate experimentation and delivery.
+A user story should include clear conditions defining when the requirement is completed. On practice, this means expectations can be checked before implementation reaches later development or QA stages. From this it follows that ambiguity can be reduced earlier, improving coordination between analysts, developers, and testers.
 
-3. Flexibility must be balanced with implementation discipline. Scaling difficulties and transition costs show that Agile is not universally effortless, so teams should adapt the methodology to their context rather than apply every practice mechanically. This supports realistic planning, dependency management, and control over scope changes while preserving the ability to respond to new information.
+### User value should guide story formulation
+
+Effective user stories should explain not only what is needed but also why it is valuable. Here, the «why» component plays a key role because it connects functionality with a user or business objective. On practice, this enables requirements to be prioritized based on their contribution to product goals rather than only technical feasibility.
+
+### AI can support requirements analysis
+
+The chapter identifies generative AI, including ChatGPT, as a promising tool for supporting user-story creation and evaluation. For teams implementing ML solutions, this means AI can accelerate preparation of initial requirements, identify possible inconsistencies, and support refinement. However, stakeholder validation remains essential because contextual and domain-specific needs cannot always be captured automatically.
 
 ## CONCLUSION
 
-The publication contributes a useful synthesis of Agile's role in adapting product management to uncertain markets. Its value lies in connecting iterative development, customer collaboration, and organizational transformation with product competitiveness. However, the absence of original quantitative analysis limits its causal conclusions. Future research could compare Agile implementations across industries, measure their effects on product outcomes, and investigate how Agile can be scaled in large organizations and ML-intensive teams.
+The publication provides a structured overview of effective user-story creation and connects established Agile practices with emerging AI-supported approaches. Its main contribution is combining user-centric principles, practical frameworks, acceptance criteria, and requirement-elicitation practices. Future research could focus on AI-assisted story generation, context-aware requirements, and empirical evaluation in real development teams.
