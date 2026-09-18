@@ -14,17 +14,18 @@ The review shows that effective user stories require more than a standard role-g
 
 ## KEY INSIGHTS
 
-### Acceptance criteria turn requirements into verifiable outcomes
+### A good user story starts with a shared understanding
 
-A user story should include clear conditions defining when the requirement is completed. On practice, this means expectations can be checked before implementation reaches later development or QA stages. From this it follows that ambiguity can be reduced earlier, improving coordination between analysts, developers, and testers.
+The chapter led me to the conclusion that the main value of a user story is not only in documenting a requirement, but in creating a shared understanding around it. This means that more attention should be given to discussing assumptions, expected outcomes, and possible misunderstandings with the team before development begins. In future projects, this approach can reduce situations where a story appears clear in writing but is interpreted differently by different participants.
 
-### User value should guide story formulation
+### User value should influence prioritization more directly
 
-Effective user stories should explain not only what is needed but also why it is valuable. Here, the «why» component plays a key role because it connects functionality with a user or business objective. On practice, this enables requirements to be prioritized based on their contribution to product goals rather than only technical feasibility.
+Another important takeaway is that user value should have a more explicit role in prioritization decisions. Urgency, stakeholder requests, and technical dependencies are important, but they should not replace an understanding of the actual benefit for the user. On practice, this means that future user stories should clearly communicate their expected value. If this value is difficult to explain, the requirement may need further clarification before being prioritized.
 
-### AI can support requirements analysis
+### AI should be used to question requirements, not only generate them
 
-The chapter identifies generative AI, including ChatGPT, as a promising tool for supporting user-story creation and evaluation. For teams implementing ML solutions, this means AI can accelerate preparation of initial requirements, identify possible inconsistencies, and support refinement. However, stakeholder validation remains essential because contextual and domain-specific needs cannot always be captured automatically.
+The discussion of AI also changed my understanding of how such tools can be applied in requirements work. Their value is not limited to generating first drafts; they can also help identify vague wording, missing acceptance conditions, and inconsistencies between related stories. In future projects, I would use AI to review the completeness and clarity of user stories before they are discussed with stakeholders or passed to development.
+
 
 ## CONCLUSION
 
