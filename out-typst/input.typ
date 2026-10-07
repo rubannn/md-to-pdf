@@ -1,40 +1,41 @@
 #import "../style/style.typ": apply-style
         #show: apply-style
         #set document(
-        title: "Article Review: Mastering User Stories: Cracking the Code of Effective User Story Creation in Agile",
+        title: "Рев’ю An Overview of Cloud Computing and Leading Cloud Service Providers",
         author: "Mykola Ruban",
-        description: "Article Review: Mastering User Stories: Cracking the Code of Effective User Story Creation in Agile",
-        keywords: ("typst", "pdf", "review", "user", "stories", "story", "requirements", "agile", "value", "review", "effective", "development", "main"),
+        description: "Рев’ю An Overview of Cloud Computing and Leading Cloud Service Providers",
+        keywords: ("typst", "pdf", "review", "хмарних", "сервісів", "azure", "cloud", "ринку", "провайдерів", "моделей", "розгортання", "рішення", "провайдера"),
         )
-        = Article Review: «Mastering User Stories: Cracking the Code of Effective User Story Creation in Agile»
+        = Рев’ю на статтю «An Overview of Cloud Computing and Leading Cloud Service Providers»
 
-== Introduction
+== Вступ
 
-The chapter «Mastering User Stories: Cracking the Code of Effective User Story Creation in Agile» by Saurabh Bhattacharya and Babita Singla was published in 2024 in _Practical Approaches to Agile Project Management_. It examines principles and challenges of creating effective user stories in Agile software development. The main research questions focus on whether Agile practitioners use user stories effectively, which gaps exist in current practices, and which principles help teams create clearer requirements. The main objective is to identify approaches that improve communication between stakeholders and development teams while keeping requirements user-oriented and connected to business value.
+Стаття «An Overview of Cloud Computing and Leading Cloud Service Providers» авторства *Praveen Borra*, опублікована у 2024 році в _International Journal of Computer Engineering and Technology (IJCET)_, присвячена огляду хмарних обчислень, їхньої архітектури, моделей надання та розгортання сервісів, а також провідних постачальників хмарних послуг. Основну увагу автор приділяє Amazon Web Services (AWS), Microsoft Azure та Google Cloud Platform (GCP). Мета публікації полягає в систематизації основних характеристик хмарних технологій та порівнянні можливостей найбільших провайдерів, а також у визначенні актуальних тенденцій розвитку ринку. 
 
-== Methodology
+== Методологія
 
-The authors use a systematic literature review as the main research method. The final review includes 30 selected publications related to Agile practices, user stories, and requirements gathering. The search process relied on relevant keywords and inclusion and exclusion criteria. The study is based on secondary data rather than experiments or surveys conducted by the authors. No independent statistical analysis was used. Instead, findings were developed through qualitative comparison of previous research, user-story frameworks, and requirement-elicitation practices.
+Робота має оглядовий характер і не базується на власному експериментальному дослідженні. Автор використовує аналіз вторинних джерел: наукових публікацій, документації AWS, Microsoft Azure і Google Cloud, матеріалів Gartner та інших галузевих ресурсів.  На основі зібраної інформації проводиться порівняння AWS, Azure та GCP за такими показниками, як частка ринку, кількість регіонів, географічне покриття, кількість сервісів та доступні технологічні рішення. Статистичні методи або формальний кількісний аналіз у роботі не застосовуються.
 
-== Results
+== Результати
 
-The review shows that effective user stories require more than a standard role-goal-benefit template. Important principles include user-centricity, clarity, empathy, prioritization, simplicity, and strategic alignment. Frameworks such as INVEST and the 5-Card approach provide structure, while acceptance criteria make requirements measurable and testable. The reviewed literature also indicates that direct user involvement improves requirements capture and user satisfaction. At the same time, teams still face difficulties identifying implicit user needs.
+Дослідження показує, що AWS, Azure та GCP залишаються провідними платформами глобального ринку хмарних послуг. У наведеному автором порівнянні AWS має приблизно 32 % ринку, Azure — 23 %, а GCP — близько 10 %.  Водночас платформи пропонують аналогічні категорії сервісів для машинного навчання, бізнес-аналітики, обробки даних, зберігання, мережевої взаємодії та керування доступом.
 
-== Key insights
+Автор також систематизує три основні моделі хмарних сервісів — IaaS, PaaS та SaaS — і розглядає публічну, приватну та гібридну моделі розгортання.   З цього випливає, що вибір хмарної платформи повинен залежати не лише від популярності провайдера, а й від вимог конкретної системи до масштабованості, безпеки, вартості та доступних сервісів.
 
-=== A good user story starts with a shared understanding
+== Ключові інсайти
 
-The chapter led me to the conclusion that the main value of a user story is not only in documenting a requirement, but in creating a shared understanding around it. This means that more attention should be given to discussing assumptions, expected outcomes, and possible misunderstandings with the team before development begins. In future projects, this approach can reduce situations where a story appears clear in writing but is interpreted differently by different participants.
+=== 1. Функціональна відповідність сервісів різних провайдерів
 
-=== User value should influence prioritization more directly
+AWS, Azure та GCP пропонують схожі за призначенням інструменти, хоча їхні назви та реалізація відрізняються. Наприклад, для ML використовуються SageMaker, Azure Machine Learning та Vertex AI, а для BI — QuickSight, Power BI та Looker.  На практиці це дає змогу під час проєктування рішення оцінювати не окремий продукт, а необхідну функцію та підбирати її реалізацію в різних хмарних екосистемах.
 
-Another important takeaway is that user value should have a more explicit role in prioritization decisions. Urgency, stakeholder requests, and technical dependencies are important, but they should not replace an understanding of the actual benefit for the user. On practice, this means that future user stories should clearly communicate their expected value. If this value is difficult to explain, the requirement may need further clarification before being prioritized.
+=== 2. Масштабованість як основа архітектурних рішень
 
-=== AI should be used to question requirements, not only generate them
+Однією з ключових переваг хмарних систем є можливість збільшувати або зменшувати обчислювальні ресурси відповідно до поточного навантаження.  Для команд, які впроваджують ML-рішення, це означає можливість гнучко виділяти ресурси для навчання моделей, обробки великих наборів даних або періодичних пікових навантажень без постійного утримання дорогої інфраструктури.
 
-The discussion of AI also changed my understanding of how such tools can be applied in requirements work. Their value is not limited to generating first drafts; they can also help identify vague wording, missing acceptance conditions, and inconsistencies between related stories. In future projects, I would use AI to review the completeness and clarity of user stories before they are discussed with stakeholders or passed to development.
+=== 3. Вибір провайдера потребує багатокритеріального підходу
 
+Варто окремо зауважити: найбільша частка ринку не робить певного провайдера автоматично оптимальним для кожного проєкту. Тут ключову роль відіграє поєднання вартості, регіональної доступності, безпеки, сумісності сервісів та потреб конкретної системи. Сам автор зазначає необхідність розширення критеріїв порівняння провайдерів у подальших дослідженнях.
 
-== Conclusion
+== Висновок
 
-The publication provides a structured overview of effective user-story creation and connects established Agile practices with emerging AI-supported approaches. Its main contribution is combining user-centric principles, practical frameworks, acceptance criteria, and requirement-elicitation practices. Future research could focus on AI-assisted story generation, context-aware requirements, and empirical evaluation in real development teams.
+Стаття формує комплексне базове уявлення про сучасні хмарні обчислення та систематизує особливості AWS, Azure і GCP. Її основний внесок полягає у поєднанні опису архітектури, моделей сервісів і розгортання з практичним порівнянням провідних платформ. Не менш важливим є той факт, що автор визначає подальший напрям досліджень — розширення критеріїв оцінювання та включення інших хмарних провайдерів.
