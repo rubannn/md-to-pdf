@@ -211,6 +211,26 @@ def escape_typst_text(text: str) -> str:
     return text
 
 
+MD_LINK_RE = re.compile(r"\[([^\[\]]+)\]\(([^()\s]+)\)")
+
+
+def render_text_with_links(text: str) -> str:
+    """
+    Конвертирует markdown-ссылки [текст](url) в Typst #link("url")[текст]
+    и экранирует остальной текст через escape_typst_text.
+    """
+    parts = []
+    last_end = 0
+    for match in MD_LINK_RE.finditer(text):
+        parts.append(escape_typst_text(text[last_end : match.start()]))
+        label = escape_typst_text(match.group(1))
+        url = match.group(2).replace("\\", "\\\\").replace('"', '\\"')
+        parts.append(f'#link("{url}")[{label}]')
+        last_end = match.end()
+    parts.append(escape_typst_text(text[last_end:]))
+    return "".join(parts)
+
+
 def is_table_separator(line: str) -> bool:
     """
     Проверяет, является ли строка разделителем заголовка таблицы Markdown, напр. |---|:---:|---|
@@ -258,7 +278,7 @@ def md_to_typst(md_text: str) -> str:
                 i += 1
 
             def cell_to_typst(cell: str) -> str:
-                return f"[{escape_typst_text(md_inline_to_typst(cell))}]"
+                return f"[{render_text_with_links(md_inline_to_typst(cell))}]"
 
             out.append("#table(")
             out.append(f"  columns: {col_count},")
@@ -272,6 +292,13 @@ def md_to_typst(md_text: str) -> str:
             out.append("")
             continue
 
+        # Горизонтальная линия Markdown "---" -> разрыв страницы в Typst
+        if re.fullmatch(r"-{3,}", raw_line.strip()):
+            out.append("#pagebreak()")
+            out.append("")
+            i += 1
+            continue
+
         # Блочная цитата Markdown: одна или несколько последовательных строк "> ..."
         if raw_line.strip().startswith(">"):
             quote_parts = []
@@ -281,7 +308,7 @@ def md_to_typst(md_text: str) -> str:
                     quote_parts.append(md_inline_to_typst(content))
                 i += 1
 
-            quote_text = escape_typst_text(" ".join(quote_parts))
+            quote_text = render_text_with_links(" ".join(quote_parts))
             out.append(f"#quote(block: true)[{quote_text}]")
             out.append("")
             continue
@@ -289,19 +316,19 @@ def md_to_typst(md_text: str) -> str:
         line = md_inline_to_typst(raw_line)
 
         if line.startswith("# "):
-            out.append(f"= {line[2:].strip()}")
+            out.append(f"= {render_text_with_links(line[2:].strip())}")
         elif line.startswith("## "):
-            out.append(f"== {line[3:].strip().capitalize()}")
+            out.append(f"== {render_text_with_links(line[3:].strip().capitalize())}")
         elif line.startswith("### "):
-            out.append(f"=== {line[4:].strip()}")
+            out.append(f"=== {render_text_with_links(line[4:].strip())}")
         elif line.startswith("#### "):
-            out.append(f"==== {line[5:].strip()}")
+            out.append(f"==== {render_text_with_links(line[5:].strip())}")
         elif line.startswith("- "):
-            out.append(f"- {line[2:].strip()}")
+            out.append(f"- {render_text_with_links(line[2:].strip())}")
         elif line.strip() == "":
             out.append("")
         else:
-            out.append(line)
+            out.append(render_text_with_links(line))
 
         i += 1
 
@@ -330,7 +357,6 @@ def get_typst(md_to_typst, AUTHOR, md_text, clean_title, typ_path, keywords):
     typ_path.write_text(typst_doc, encoding="utf-8")
 
 
-
 # -----------------------------
 # Константы
 # -----------------------------
@@ -340,6 +366,8 @@ PREFIX = os.getenv("PREFIX", "Noname. ")
 AUTHOR = os.getenv("AUTHOR", "Unknown Author")
 
 INPUT_MD = Path("./in/input.md")
+# INPUT_MD = Path("./in/aricoma_analysis.md")
+
 OUT_DIR = Path("./out")
 OUT_DIR_TYPST = Path("./out-typst")
 OUT_DIR.mkdir(exist_ok=True)
