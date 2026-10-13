@@ -208,6 +208,7 @@ def escape_typst_text(text: str) -> str:
     text = text.replace("#", "\\#")
     text = text.replace("[", "\\[")
     text = text.replace("]", "\\]")
+    text = text.replace("$", "\\$")
     return text
 
 

@@ -1,35 +1,43 @@
-# Review of the Article «A Survey on Networked Data Streaming With Apache Kafka»
+# Review of the Article «Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics»
 
 ## INTRODUCTION
 
-The article «A Survey on Networked Data Streaming With Apache Kafka» by Theofanis P. Raptis and Andrea Passarella, published in IEEE Access in 2023, explores Apache Kafka as a distributed platform for real-time data streaming. The main objective is to systematically review existing research, identify optimization strategies, and highlight challenges related to Kafka-based systems. The study focuses on five areas: algorithms, networks, data processing, cyber-physical systems, and security.
+The article «Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics» was published in 2021 by Michael Armbrust, Ali Ghodsi, Reynold Xin, and Matei Zaharia at the Conference on Innovative Data Systems Research (CIDR).
+
+The paper introduces the Lakehouse architecture, which combines the advantages of data lakes and data warehouses. The main objective is to demonstrate how a unified data platform can reduce infrastructure complexity, improve data reliability, and support both business intelligence and machine learning workloads.
 
 ## METHODOLOGY
 
-The authors use a systematic literature review approach, analyzing previously published research on Apache Kafka. The collected studies are classified into five thematic categories to examine architectural solutions, performance optimization techniques, and practical applications. The methodology includes qualitative comparisons of existing approaches and research directions. No independent experiments or statistical hypothesis testing were conducted, as the study primarily synthesizes existing findings.
+The research combines architectural analysis with experimental performance evaluation. The authors examine the limitations of traditional data warehouses and data lakes, comparing their storage capabilities, processing efficiency, and support for advanced analytics.
+
+To validate the proposed architecture, the researchers use the TPC-DS benchmark with 99 SQL queries and compare Databricks Delta Engine against four cloud data warehouses. Performance is evaluated through query execution time and computational costs. No separate statistical hypothesis testing is reported.
 
 ## RESULTS
 
-The review demonstrates that Apache Kafka provides a scalable and fault-tolerant foundation for distributed streaming applications. The authors identify important optimization opportunities involving topic partitioning, resource allocation, network performance, and data processing efficiency.
+The results demonstrate that Lakehouse architecture can provide competitive analytical performance while reducing processing costs.
 
-The study also highlights Kafka applications in Internet of Things environments, industrial systems, and machine learning pipelines. At the same time, maintaining low latency, efficient resource utilization, and secure communication remains challenging. This suggests that Kafka performance depends not only on its architecture but also on configuration decisions and infrastructure constraints.
+In the TPC-DS benchmark, Delta Engine completed the workload in approximately 3,302 seconds, compared with 2,996–37,283 seconds for competing systems. Its execution cost was $104 using on-demand instances, compared with $153–$570 for the evaluated warehouses.
+
+These findings suggest that open storage formats do not necessarily limit analytical performance. Furthermore, integrating storage and analytics reduces unnecessary data duplication and simplifies data management.
 
 ## KEY INSIGHTS
 
-### 1. Topic Partitioning and Performance Optimization
+### 1. Unified Data Architecture Reduces Pipeline Complexity
 
-Kafka topic partitioning plays a critical role in determining throughput and parallel processing efficiency. In practice, this means that selecting an appropriate number of partitions can improve workload distribution across consumers. For data engineering projects, this insight helps design streaming pipelines that process large event volumes without unnecessary bottlenecks. It also supports more informed decisions when configuring Kafka clusters for growing workloads.
+A particularly useful insight concerns eliminating unnecessary data transfers between data lakes and warehouses. In practice, this means that data engineering teams can build pipelines around a shared storage layer instead of maintaining multiple synchronized datasets. This reduces the number of ETL operations, simplifies debugging, and helps prevent inconsistencies between analytical and operational data.
 
-### 2. Integration With Real-Time Machine Learning Pipelines
+### 2. Open Data Formats Improve ML Workflow Flexibility
 
-Kafka can serve as a communication layer between data producers and machine learning services. This makes it possible to process incoming events continuously instead of relying exclusively on batch processing. For teams implementing ML solutions, this means faster data availability for inference and monitoring. Such an architecture is particularly useful when developing systems that require immediate predictions or continuous analysis of changing data.
+The use of Apache Parquet and other open formats enables different processing frameworks to access the same datasets. For teams implementing ML solutions, this means that Spark, Python-based tools, and machine learning frameworks can work with shared data without repeatedly exporting it from proprietary warehouses. This simplifies feature preparation, improves experiment reproducibility, and reduces additional storage requirements.
 
-### 3. Fault Tolerance and System Reliability
+### 3. Transactional Metadata Improves Data Reliability
 
-Replication and distributed data management are essential for maintaining reliable streaming services. In practical software development, this insight supports designing systems that remain operational despite individual broker failures. Applying replication strategies and appropriate reliability configurations helps reduce the risk of data loss and improves the stability of production data pipelines.
+Another important insight is the role of ACID transactions and data versioning in reliable analytical systems. In practical data engineering work, versioned datasets make it possible to reproduce previous results, investigate pipeline failures, and restore earlier data states. This is especially valuable for ML workflows where consistent training datasets are necessary for comparing experiments and validating model performance.
 
 ## CONCLUSION
 
-The article provides a structured overview of Apache Kafka research and connects theoretical optimization approaches with practical streaming applications. Its main contribution is the classification of existing knowledge across multiple technical domains, including security and cyber-physical systems.
+The article makes a significant contribution by demonstrating that Lakehouse architecture can combine efficient SQL analytics, open storage, and advanced machine learning support within one platform.
 
-Future research could focus on automated resource optimization, stronger security mechanisms, and more efficient integration with distributed machine learning systems. Overall, the publication provides a useful foundation for designing scalable, reliable, and efficient real-time data processing architectures.
+Its main strength is connecting architectural concepts with measurable performance results. However, broader independent benchmarking would strengthen the conclusions. Future research could investigate storage optimization, metadata management, serverless processing, and scalability under diverse production workloads.
+
+Overall, the paper provides a practical foundation for designing modern, scalable data and machine learning platforms.
