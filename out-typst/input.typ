@@ -1,41 +1,53 @@
 #import "../style/style.typ": apply-style
         #show: apply-style
         #set document(
-        title: "Review of the Article Comprehensive Survey of Amazon Web Services AWS : Techniques, Tools, and Best Practices for Cloud Solutions",
+        title: "Аналіз кейсів міжкультурної взаємодії",
         author: "Mykola Ruban",
-        description: "Review of the Article Comprehensive Survey of Amazon Web Services AWS : Techniques, Tools, and Best Practices for Cloud Solutions",
-        keywords: ("typst", "pdf", "review", "cloud", "services", "amazon", "solutions", "practical", "cost", "infrastructure", "article", "provides", "research"),
+        description: "Аналіз кейсів міжкультурної взаємодії",
+        keywords: ("typst", "pdf", "review", "рішення", "аналізу", "рішень", "відмінності", "культурного", "інтелекту", "очікування", "французька", "американська", "культурні"),
         )
-        = Review of the Article «Comprehensive Survey of Amazon Web Services (AWS): Techniques, Tools, and Best Practices for Cloud Solutions»
+        = Аналіз кейсів міжкультурної взаємодії
 
-== Introduction
+*Мета аналізу.* Визначити культурно зумовлені відмінності в робочих очікуваннях, пояснити джерела непорозумінь і запропонувати практичні рішення на основі культурного інтелекту (CQ).
 
-The article «Comprehensive Survey of Amazon Web Services (AWS): Techniques, Tools, and Best Practices for Cloud Solutions», written by Praveen Borra and published in 2024, provides an overview of AWS technologies, architecture, and practical applications. The main objective is to examine how AWS services support scalable, secure, and cost-effective cloud solutions. The research also explores the challenges of cloud adoption and emerging trends in artificial intelligence, machine learning, and infrastructure management.
+*Примітка:* Наведені характеристики описують можливі тенденції в діловій культурі, а не незмінні риси всіх представників певної країни. Реальні очікування необхідно уточнювати в самих учасників.
 
-== Methodology
+== Кейс 1. французька та американська компанії
 
-The study uses a descriptive literature review based primarily on AWS technical documentation and existing publications. The author examines cloud services, architectural approaches, security mechanisms, and practical use cases. Comparative descriptions and service classification tables help organize the findings. No original experiments, quantitative datasets, or statistical analyses are presented. Therefore, the research focuses on synthesizing technical information rather than experimentally evaluating AWS performance.
+=== 1. Ключові культурні відмінності
 
-== Results
+Французькі менеджери в описаній ситуації віддають перевагу ґрунтовному обговоренню, критичному аналізу альтернатив і аргументованому узгодженню рішення. Американські колеги орієнтуються на швидкий результат, практичну дію та коригування плану в процесі роботи. Отже, різняться темп ухвалення рішень, ставлення до невизначеності й розуміння ефективності: «спочатку обґрунтувати» проти «почати діяти й удосконалювати». Це характеристики конкретних команд, які можуть бути підсилені національними управлінськими традиціями.
 
-The study demonstrates that AWS provides an extensive ecosystem for developing and managing cloud applications. Services such as Amazon EC2, S3, RDS, and Lambda support flexible infrastructure, while AWS Glue, Amazon Redshift, and SageMaker enable data processing and machine learning workflows.
+=== 2. Причини непорозуміння
 
-The findings emphasize scalability, high availability, and automation as major advantages. However, cost management, security configuration, and vendor lock-in remain significant challenges. The analysis also identifies serverless computing, AI integration, and hybrid cloud solutions as important development trends.
+Сторони не погодили спільні правила прийняття рішень. Американська команда могла сприймати тривалі дискусії як зволікання, а французька — наполягання на негайних діях як поверховість і нехтування ризиками. Через різні критерії «якісного рішення» учасники приписали партнерам неефективність замість того, щоб побачити відмінність робочих підходів. Напруження посилила відсутність визначених строків обговорення та відповідальних за остаточне рішення.
 
-== Key insights
+=== 3. Оптимальне вирішення з урахуванням культурного інтелекту
 
-=== 1. Infrastructure Automation Improves Deployment Consistency
+- Провести спільну зустріч без взаємних звинувачень: з’ясувати, які ризики французька команда прагне проаналізувати і яких термінів потребує американська.
+- Запровадити двоетапну модель: короткий, обмежений у часі аналіз ключових варіантів і ризиків; після нього — рішення, відповідальна особа та негайний запуск погодженого кроку.
+- Розмежувати рішення за значущістю: стратегічні та дорогі — після детальної оцінки; оборотні й малоризикові — швидко, з подальшою перевіркою результату.
+- Фіксувати в спільному протоколі критерії рішення, дедлайни, відповідальних і дату перегляду. Регулярно перевіряти, чи обидві сторони однаково розуміють домовленості.
+*Застосування CQ:* усвідомити власні культурні припущення (рефлексія), дізнатися логіку партнера (пізнання), проявити інтерес до співпраці (мотивація) й адаптувати стиль нарад та рішень (поведінка).
 
-The article highlights AWS CloudFormation and DevOps services as tools for automating infrastructure management. In practical software development, this approach allows engineering teams to define infrastructure through reusable configurations instead of manually creating resources. This reduces configuration differences between development, testing, and production environments. As a result, deployment becomes more predictable, and maintaining complex cloud applications requires less repetitive work.
+== Кейс 2. німецька компанія та філія в індії
 
-=== 2. AWS Services Enable Efficient Machine Learning Workflows
+=== 1. Ключові культурні відмінності
 
-The combination of Amazon S3, AWS Glue, and Amazon SageMaker provides a foundation for building ML pipelines. For teams developing ML solutions, this means that data storage, preprocessing, model training, and deployment can be organized within one cloud ecosystem. In practical projects, such integration simplifies pipeline maintenance, reduces manual data transfers, and supports reproducible machine learning experiments.
+У кейсі німецькі менеджери очікують самостійного планування, ініціативності працівників і своєчасного повідомлення про проблеми. Індійська команда очікує чітких доручень і підтвердження повноважень керівником. Одне з можливих пояснень — різне сприйняття ієрархії та меж особистої відповідальності: в одній команді ініціатива вважається нормою, в іншій самовільне рішення може трактуватися як вихід за межі ролі. Водночас у межах обох країн організаційні практики суттєво відрізняються.
 
-=== 3. Cost Optimization Must Be Integrated into System Design
+=== 2. Причини непорозуміння
 
-The research identifies cloud spending management as a critical challenge. For cloud engineering projects, this emphasizes the importance of selecting appropriate computing resources and monitoring their utilization. Applying automatic scaling, resource monitoring, and suitable storage configurations helps prevent unnecessary expenses. Consequently, cost optimization becomes a continuous engineering responsibility rather than a separate financial activity.
+Німецькі керівники не сформулювали, які саме рішення індійські працівники мають право ухвалювати самостійно. Ті, своєю чергою, могли чекати погодження, щоб не порушити субординацію або не припуститися помилки. Керівництво сприймало очікування інструкцій як пасивність, а працівники — загальні завдання як недостатньо конкретні. Через це питання накопичувалися, ескалація затримувалася, а виробничі строки зсувалися.
 
-== Conclusion
+=== 3. Оптимальне вирішення з урахуванням культурного інтелекту
 
-Overall, the article provides a useful structured introduction to AWS architecture, services, and cloud engineering practices. Its main contribution is connecting technological capabilities with practical implementation considerations. However, the absence of experimental evaluations limits its ability to demonstrate measurable performance improvements. Future research could investigate real-world cost comparisons, automated ML pipeline performance, multi-cloud portability, and security optimization through empirical experiments.
+- На старті кожного виробничого циклу визначати очікуваний результат, пріоритети, строки, стандарти якості та відповідальних; надавати письмові інструкції щодо критичних операцій.
+- Створити матрицю повноважень: що працівник вирішує сам, що узгоджує з керівником і які проблеми потрібно негайно передати на вищий рівень.
+- Поступово розвивати самостійність: почати з невеликих рішень у визначених межах, підтримувати конструктивні ініціативи та навчати аналізу ризиків.
+- Запровадити короткі регулярні перевірки стану завдань і безпечний канал для запитань; просити команду переказати домовленості своїми словами, не вважаючи мовчання автоматичною згодою.
+*Застосування CQ:* керівникам слід перевірити припущення про «пасивність», зрозуміти очікування щодо ієрархії та адаптувати стиль управління — від чіткішого наставництва на початку до поступового делегування.
+
+== Загальний висновок
+
+В обох кейсах конфлікт спричинений не відсутністю професіоналізму, а розбіжністю невисловлених очікувань щодо роботи. Для французько-американської команди найкращим є баланс глибини аналізу та швидкості дій; для німецько-індійської — поєднання зрозумілих інструкцій із поступовим розширенням автономії. Культурний інтелект допомагає не оцінювати інший стиль як «неправильний», а перевіряти припущення, домовлятися про правила та гнучко змінювати власну поведінку.

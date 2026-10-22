@@ -367,7 +367,7 @@ PREFIX = os.getenv("PREFIX", "Noname. ")
 AUTHOR = os.getenv("AUTHOR", "Unknown Author")
 
 INPUT_MD = Path("./in/input.md")
-# INPUT_MD = Path("./in/aricoma_analysis.md")
+# INPUT_MD = Path("./in/analysis_intercultural.md")
 
 OUT_DIR = Path("./out")
 OUT_DIR_TYPST = Path("./out-typst")
