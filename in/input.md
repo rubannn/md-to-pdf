@@ -1,34 +1,51 @@
-# Review of the Article «Comprehensive Survey of Amazon Web Services (AWS): Techniques, Tools, and Best Practices for Cloud Solutions»
+# Рев’ю на статтю «Автоматизація міграції програмного забезпечення у хмарну архітектуру із використанням інструменту інфраструктури як код Terraform у середовищі AWS»
 
-## INTRODUCTION
+## ВСТУП
 
-The article «Comprehensive Survey of Amazon Web Services (AWS): Techniques, Tools, and Best Practices for Cloud Solutions», written by Praveen Borra and published in 2024, provides an overview of AWS technologies, architecture, and practical applications. The main objective is to examine how AWS services support scalable, secure, and cost-effective cloud solutions. The research also explores the challenges of cloud adoption and emerging trends in artificial intelligence, machine learning, and infrastructure management.
+У науковій статті С. В. Бегліцова «Автоматизація міграції програмного забезпечення у хмарну архітектуру із використанням інструменту інфраструктури як код Terraform у середовищі AWS» розглядаються підходи до автоматизації перенесення програмного забезпечення з локальної інфраструктури до хмарного середовища AWS.
 
-## METHODOLOGY
+Основною метою дослідження є розробка підходу до автоматизації міграції програмного забезпечення за допомогою Terraform із використанням концепції Infrastructure as Code (IaC). Особлива увага приділяється підвищенню повторюваності розгортань, зменшенню кількості ручних операцій та спрощенню управління хмарними ресурсами.
 
-The study uses a descriptive literature review based primarily on AWS technical documentation and existing publications. The author examines cloud services, architectural approaches, security mechanisms, and practical use cases. Comparative descriptions and service classification tables help organize the findings. No original experiments, quantitative datasets, or statistical analyses are presented. Therefore, the research focuses on synthesizing technical information rather than experimentally evaluating AWS performance.
+## МЕТОДОЛОГІЯ
 
-## RESULTS
+Дослідження ґрунтується на аналізі наукових публікацій, принципів хмарної архітектури та практичному моделюванні автоматизованого розгортання інфраструктури.
 
-The study demonstrates that AWS provides an extensive ecosystem for developing and managing cloud applications. Services such as Amazon EC2, S3, RDS, and Lambda support flexible infrastructure, while AWS Glue, Amazon Redshift, and SageMaker enable data processing and machine learning workflows.
+Автор розглядає приклад міграції застосунку електронної комерції з використанням Terraform, AWS Lambda, API Gateway, Amazon S3, Bash-скриптів та GitHub Actions. Запропонована послідовність передбачає опис інфраструктури декларативними конфігураціями, параметризацію ресурсів і виконання команд Terraform через CI/CD.
 
-The findings emphasize scalability, high availability, and automation as major advantages. However, cost management, security configuration, and vendor lock-in remain significant challenges. The analysis also identifies serverless computing, AI integration, and hybrid cloud solutions as important development trends.
+Статистичних методів аналізу або кількісного порівняння продуктивності не наведено. Методологія має переважно прикладний характер і демонструє технічну реалізацію запропонованого підходу.
 
-## KEY INSIGHTS
+## РЕЗУЛЬТАТИ
 
-### 1. Infrastructure Automation Improves Deployment Consistency
+Основним результатом роботи є представлення сценарію автоматизованого створення та налаштування хмарної інфраструктури AWS.
 
-The article highlights AWS CloudFormation and DevOps services as tools for automating infrastructure management. In practical software development, this approach allows engineering teams to define infrastructure through reusable configurations instead of manually creating resources. This reduces configuration differences between development, testing, and production environments. As a result, deployment becomes more predictable, and maintaining complex cloud applications requires less repetitive work.
+Продемонстровано використання Terraform для конфігурації AWS Lambda та API Gateway, динамічне формування конфігурацій через Bash і автоматизацію розгортання засобами GitHub Actions.
 
-### 2. AWS Services Enable Efficient Machine Learning Workflows
+Звідси видно, що поєднання IaC та CI/CD дозволяє стандартизувати інфраструктурні зміни й зменшити залежність від ручного налаштування. Не менш важливим є той факт, що автор розглядає віддалене зберігання стану Terraform для командної роботи.
 
-The combination of Amazon S3, AWS Glue, and Amazon SageMaker provides a foundation for building ML pipelines. For teams developing ML solutions, this means that data storage, preprocessing, model training, and deployment can be organized within one cloud ecosystem. In practical projects, such integration simplifies pipeline maintenance, reduces manual data transfers, and supports reproducible machine learning experiments.
+Водночас відсутність кількісних показників не дозволяє об'єктивно оцінити фактичне скорочення часу міграції або операційних витрат.
 
-### 3. Cost Optimization Must Be Integrated into System Design
+## КЛЮЧОВІ ІНСАЙТИ
 
-The research identifies cloud spending management as a critical challenge. For cloud engineering projects, this emphasizes the importance of selecting appropriate computing resources and monitoring their utilization. Applying automatic scaling, resource monitoring, and suitable storage configurations helps prevent unnecessary expenses. Consequently, cost optimization becomes a continuous engineering responsibility rather than a separate financial activity.
+**1. Декларативне управління інфраструктурою через Terraform.**
 
-## CONCLUSION
+Практична цінність підходу полягає у можливості описувати хмарні ресурси як версійований код. Для роботи над програмними системами це дає змогу створювати однакові середовища розробки, тестування та експлуатації без повторного ручного конфігурування. На практиці це означає, що зміни інфраструктури можна перевіряти через code review, контролювати їхню історію та відтворювати необхідні конфігурації.
 
-Overall, the article provides a useful structured introduction to AWS architecture, services, and cloud engineering practices. Its main contribution is connecting technological capabilities with practical implementation considerations. However, the absence of experimental evaluations limits its ability to demonstrate measurable performance improvements. Future research could investigate real-world cost comparisons, automated ML pipeline performance, multi-cloud portability, and security optimization through empirical experiments.
+**2. Інтеграція Terraform у CI/CD-процеси.**
 
+Автоматизація інфраструктурних змін разом із процесом доставки програмного забезпечення є особливо корисною під час розробки та супроводу хмарних застосунків. Тут ключову роль відіграє можливість виконувати планування та застосування змін через контрольований пайплайн. Завдяки цьому вдається скоротити кількість ручних дій, забезпечити передбачуваність розгортань і спростити впровадження архітектурних змін.
+
+**3. Централізоване управління станом інфраструктури.**
+
+Використання віддаленого сховища стану Terraform має практичне значення для командної розробки. Воно дозволяє підтримувати узгодженість інформації про створені ресурси та зменшувати ризик конфліктів під час паралельної роботи. Для супроводу складних систем це, своєю чергою, дає можливість безпечніше координувати інфраструктурні зміни між розробниками та DevOps-інженерами.
+
+## ВИСНОВОК
+
+Стаття демонструє практичні можливості Terraform для автоматизації міграції та управління ресурсами AWS. Основним внеском є поєднання декларативного опису інфраструктури, параметризації, управління станом і CI/CD в єдиний процес розгортання.
+
+Перспективними напрямами подальших досліджень є кількісне оцінювання ефективності автоматизації, аналіз безпеки інфраструктурних конфігурацій та порівняння альтернативних стратегій міграції. Також доцільним є дослідження механізмів автоматизованого тестування й відновлення після невдалих розгортань.
+
+---
+
+**Джерело:** Бегліцов С. В. «Автоматизація міграції програмного забезпечення у хмарну архітектуру із використанням інструменту інфраструктури як код Terraform у середовищі AWS». Комп’ютерно-інтегровані технології: освіта, наука, виробництво. 2024. № 56. С. 99–106.
+
+https://cit.lntu.edu.ua/index.php/cit/article/view/607/711
